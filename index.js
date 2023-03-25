@@ -4,18 +4,18 @@
 
 const express = require('express');
 const { config } = require('dotenv');
-// const { ChatGPTAPI } = await import('chatgpt');
+const ChatGPTAPI = await import('chatgpt').then((m) => m.ChatGPTAPI);
 
 config();
 
 const app = express();
-// const chatgpt = new ChatGPTAPI({
-//     apiKey: process.env.OPENAI_API_KEY,
-//     completionParams: {
-//         temperature: 0.9,
-//         model: 'gpt-3.5-turbo',
-//     },
-// });
+const chatgpt = new ChatGPTAPI({
+    apiKey: process.env.OPENAI_API_KEY,
+    completionParams: {
+        temperature: 0.9,
+        model: 'gpt-3.5-turbo',
+    },
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/chat', async (req, res) => {
     const { message, username } = req.query;
-    // const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
+    const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
     res.send(message);
 });
 
