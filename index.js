@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     res.send("hello darkness my old friend");
 });
 
-app.get("/askferris", async (req, res) => {
+app.get("/ferris", async (req, res) => {
     const { message, username } = req.query;
 
     const completion = await openai.createChatCompletion({
