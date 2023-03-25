@@ -2,23 +2,16 @@
  * This is a nodeJS express server that calls the chatgpt API.
  */
 
-const express = require('express');
-const { config } = require('dotenv');
-const ChatGPTAPI = await import('chatgpt').then((m) => m.ChatGPTAPI);
+const express = require("express");
+const { config } = require("dotenv");
+const cgpt = import("chatgpt");
 
 config();
 
 const app = express();
-const chatgpt = new ChatGPTAPI({
-    apiKey: process.env.OPENAI_API_KEY,
-    completionParams: {
-        temperature: 0.9,
-        model: 'gpt-3.5-turbo',
-    },
-});
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
 
 // app.get('/askferris', async (req, res) => {
@@ -30,9 +23,18 @@ app.get('/', (req, res) => {
 //     res.end(response.text);
 // });
 
-app.get('/chat', async (req, res) => {
+app.get("/chat", async (req, res) => {
     const { message, username } = req.query;
-    // const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
+    const chatgpt = await cgpt.then(m => {
+        return new m.ChatGPTAPI({
+            apiKey: process.env.OPENAI_API_KEY,
+            completionParams: {
+                temperature: 0.9,
+                model: "gpt-3.5-turbo",
+            },
+        });
+    });
+    const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
     res.send(message);
 });
 
