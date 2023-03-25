@@ -30,11 +30,11 @@ app.get('/', (req, res) => {
 //     res.end(response.text);
 // });
 
-// app.get('/chat', async (req, res) => {
-//     const { message, username } = req.query;
-//     const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
-//     res.end(response.text);
-// });
+app.get('/chat', async (req, res) => {
+    const { message, username } = req.query;
+    // const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
+    res.send(message);
+});
 
 // Initialize server
 app.listen(5000, () => {
