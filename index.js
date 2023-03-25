@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/chat', async (req, res) => {
     const { message, username } = req.query;
-    const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
+    // const response = await chatgpt.sendMessage(`Hi ${username}, ${message}`);
     res.send(message);
 });
 
