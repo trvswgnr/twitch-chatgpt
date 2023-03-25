@@ -42,7 +42,7 @@ app.get("/chat", async (req, res) => {
         model: "gpt-3.5-turbo",
         messages: [
             { role: "system", content: `You are ChatGPT, a large language model trained by OpenAI. You answer as concisely as possible for each response. Answer only in plain text (no markdown or HTML).\n\nCurrent date: ${new Date().toISOString()}\n\n` },
-            { role: "user", content: `Hi, my username is ${username}. ${message}` }
+            { role: "user", content: `Hi, my username is ${username}. ${message}. Only respond with plain text. No markdown or HTML.` }
         ],
     });
 
