@@ -3,10 +3,10 @@
  */
 
 const express = require('express');
-// const { config } = require('dotenv');
+const { config } = require('dotenv');
 // const { ChatGPTAPI } = await import('chatgpt');
 
-// config();
+config();
 
 const app = express();
 // const chatgpt = new ChatGPTAPI({
