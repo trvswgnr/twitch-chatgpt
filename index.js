@@ -2,9 +2,9 @@
  * This is a nodeJS express server that calls the chatgpt API.
  */
 
-import express from 'express';
-import { config } from 'dotenv';
-import { ChatGPTAPI } from 'chatgpt';
+const express = require('express');
+const { config } = require('dotenv');
+const { ChatGPTAPI } = await import('chatgpt');
 
 config();
 
