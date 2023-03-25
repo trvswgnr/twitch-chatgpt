@@ -32,7 +32,7 @@ app.get("/ferris", async (req, res) => {
         ],
     });
 
-    res.send(completion.data.choices[0].message.content);
+    res.send(completion.data.choices[0].message.content.replace(/\\n/g, " "));
 });
 
 app.get("/chat", async (req, res) => {
@@ -46,7 +46,7 @@ app.get("/chat", async (req, res) => {
         ],
     });
 
-    res.send(completion.data.choices[0].message.content);
+    res.send(completion.data.choices[0].message.content.replace(/\\n/g, " "));
 });
 
 // Initialize server
