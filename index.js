@@ -23,6 +23,9 @@ app.get("/", (req, res) => {
 
 app.get("/ferris", async (req, res) => {
     const { message, username } = req.query;
+    if (String(message).trim().toLowerCase() === "knife") {
+        return res.send("🦀🔪 R.I.I.R. 🦀🔪");
+    }
 
     const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
